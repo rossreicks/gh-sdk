@@ -77,6 +77,17 @@ export type GhExecutorOptions = {
     runner?: GhRunner | undefined;
 };
 
+export type GhRunOptions = {
+    input?: string;
+    allowExitCodes?: readonly number[];
+};
+
+export type GhRunResult = {
+    exitCode: number;
+    stdout: string;
+    stderr: string;
+};
+
 export class GhExecutor {
     readonly ghPath: string;
     readonly cwd: string | undefined;
@@ -90,15 +101,16 @@ export class GhExecutor {
         this.runner = options.runner ?? defaultGhRunner;
     }
 
-    async json<T>(args: readonly string[]): Promise<T> {
+    async run(args: readonly string[], options: GhRunOptions = {}): Promise<GhRunResult> {
         const result = await this.runner({
             executable: this.ghPath,
             args,
             cwd: this.cwd,
             env: this.env,
+            input: options.input,
         });
 
-        if (result.exitCode !== 0) {
+        if (result.exitCode !== 0 && !options.allowExitCodes?.includes(result.exitCode)) {
             throw new GhError({
                 code: "GH_COMMAND_FAILED",
                 message: `GitHub CLI command failed with exit code ${result.exitCode}.`,
@@ -109,6 +121,12 @@ export class GhExecutor {
                 stderr: result.stderr,
             });
         }
+
+        return result;
+    }
+
+    async json<T>(args: readonly string[], options: GhRunOptions = {}): Promise<T> {
+        const result = await this.run(args, options);
 
         try {
             return JSON.parse(result.stdout) as T;

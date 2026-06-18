@@ -37,8 +37,23 @@ const prs = await gh.pr.list({
 
 const pr = await gh.pr.view({
   repo: "cli/cli",
-  number: 1,
+  pr: 1,
   fields: ["number", "title", "author", "url"] as const,
+});
+
+const created = await gh.pr.create({
+  repo: "cli/cli",
+  title: "Fix bug",
+  body: "Details here",
+});
+console.log(created.url);
+
+await gh.pr.merge({ repo: "cli/cli", pr: 42, strategy: "squash" });
+
+const repos = await gh.repo.list({
+  owner: "cli",
+  fields: ["nameWithOwner", "url"] as const,
+  limit: 5,
 });
 ```
 
@@ -62,13 +77,47 @@ Array<{
 
 ## Supported commands
 
-Initial v1 surface:
+All top-level `gh pr` and `gh repo` subcommands are wrapped with typed options. Every method requires an explicit `repo` where the CLI supports `--repo` and does not infer repository context from `cwd`.
 
-- `gh.repo.view(...)` → `gh repo view <repo> --json ...`
-- `gh.pr.list(...)` → `gh pr list --repo <repo> --json ...`
-- `gh.pr.view(...)` → `gh pr view <number> --repo <repo> --json ...`
+### Pull requests (`gh.pr`)
 
-High-level methods require an explicit `repo` and do not infer repository context from `cwd`.
+| Method | Maps to |
+|--------|---------|
+| `create` | `gh pr create` |
+| `list` | `gh pr list --json ...` |
+| `view` | `gh pr view --json ...` |
+| `status` | `gh pr status --json ...` |
+| `checks` | `gh pr checks --json ...` |
+| `close` | `gh pr close` |
+| `comment` | `gh pr comment` |
+| `edit` | `gh pr edit` |
+| `merge` | `gh pr merge` |
+| `review` | `gh pr review` |
+| `ready` | `gh pr ready` |
+| `reopen` | `gh pr reopen` |
+| `revert` | `gh pr revert` |
+| `updateBranch` | `gh pr update-branch` |
+| `lock` / `unlock` | `gh pr lock` / `gh pr unlock` |
+
+### Repositories (`gh.repo`)
+
+| Method | Maps to |
+|--------|---------|
+| `create` | `gh repo create` |
+| `list` | `gh repo list --json ...` |
+| `view` | `gh repo view --json ...` |
+| `edit` | `gh repo edit` |
+| `delete` | `gh repo delete` |
+| `archive` / `unarchive` | `gh repo archive` / `gh repo unarchive` |
+| `sync` | `gh repo sync` |
+| `rename` | `gh repo rename` |
+| `setDefault` | `gh repo set-default` |
+
+### Excluded
+
+- Git/filesystem operations: `pr checkout`, `pr diff`, `repo clone`, `repo fork`
+- Nested repo groups: `autolink`, `deploy-key`, `gitignore`, `license`
+- Interactive/browser/long-poll flags: `--web`, `--editor`, `--watch`, and git-related `repo create` flags (`--clone`, `--push`)
 
 ## Errors
 
@@ -78,7 +127,7 @@ Failed commands and JSON parsing failures throw `GhError`:
 import { GhError } from "gh-sdk";
 
 try {
-  await gh.pr.view({ repo: "cli/cli", number: 1, fields: ["title"] as const });
+  await gh.pr.view({ repo: "cli/cli", pr: 1, fields: ["title"] as const });
 } catch (error) {
   if (error instanceof GhError) {
     console.error(error.code);
