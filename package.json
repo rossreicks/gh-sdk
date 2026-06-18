@@ -35,8 +35,7 @@
         "spike:gh-json-fields": "tsx scripts/discover-gh-json-fields.ts",
         "lint": "biome check .",
         "lint:fix": "biome check --write .",
-        "format": "biome format --write .",
-        "prepare": "lefthook install"
+        "format": "biome format --write ."
     },
     "devDependencies": {
         "@biomejs/biome": "^2.5.0",
