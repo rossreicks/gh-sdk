@@ -9,4 +9,4 @@ publish:
 	npm publish
 
 post-publish:
-	mkdir /tmp/gh-sdk && cd /tmp/gh-sdk && pnpm init -y && pnpm add gh-sdk@latest && node -e "import { GhClient } from 'gh-sdk'; const gh = new GhClient(); console.log(gh.repo.view({ repo: 'cli/cli', fields: ['name', 'url'] as const }));"
+	rm -rf /tmp/gh-sdk && mkdir /tmp/gh-sdk && cd /tmp/gh-sdk && pnpm init && pnpm add gh-sdk@latest && node -e "import { GhClient } from 'gh-sdk'; const gh = new GhClient(); console.log(await gh.repo.view({ repo: 'cli/cli', fields: ['name', 'url'] as const }));"
