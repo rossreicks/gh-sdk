@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "gh-sdk"
-  image: './gh-sdk//logo.svg'
+  image: './gh-sdk/logo.svg'
   tagline: Type-safe GitHub CLI wrapper for Node.js
   actions:
     - theme: brand
