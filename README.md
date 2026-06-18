@@ -1,8 +1,8 @@
-# node-gh
+# gh-sdk
 
 A Node SDK for GitHub CLI.
 
-`node-gh` wraps selected [`gh`](https://cli.github.com/) commands with a typed TypeScript API. It does not replace GitHub's REST or GraphQL APIs; it assumes the GitHub CLI is installed and authenticated, then delegates to it.
+`gh-sdk` wraps selected [`gh`](https://cli.github.com/) commands with a typed TypeScript API. It does not replace GitHub's REST or GraphQL APIs; it assumes the GitHub CLI is installed and authenticated, then delegates to it.
 
 ## Requirements
 
@@ -13,13 +13,13 @@ A Node SDK for GitHub CLI.
 ## Install
 
 ```sh
-pnpm add node-gh
+pnpm add gh-sdk
 ```
 
 ## Usage
 
 ```ts
-import { GhClient } from "node-gh";
+import { GhClient } from "gh-sdk";
 
 const gh = new GhClient();
 
@@ -75,7 +75,7 @@ High-level methods require an explicit `repo` and do not infer repository contex
 Failed commands and JSON parsing failures throw `GhError`:
 
 ```ts
-import { GhError } from "node-gh";
+import { GhError } from "gh-sdk";
 
 try {
   await gh.pr.view({ repo: "cli/cli", number: 1, fields: ["title"] as const });
