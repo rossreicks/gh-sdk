@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+    --vp-font-family-base: "Space Grotesk", "Geist", sans-serif;
+    --vp-font-family-mono: "JetBrains Mono", monospace;
+}
+
+/* VitePress caps home hero images at 192/256/320px by breakpoint.
+   Override the default theme selectors to make the logo more prominent. */
+.VPHero .image-container {
+    width: min(360px, 100vw);
+    height: min(360px, 100vw);
+}
+
+.VPHero .image-bg,
+.VPHero .image-src {
+    width: 240px;
+    height: 240px;
+    max-width: 240px;
+    max-height: 240px;
+}
+
+@media (min-width: 640px) {
+    .VPHero .image-container {
+        width: 480px;
+        height: 480px;
+    }
+
+    .VPHero .image-bg,
+    .VPHero .image-src {
+        width: 340px;
+        height: 340px;
+        max-width: 340px;
+        max-height: 340px;
+    }
+}
+
+@media (min-width: 960px) {
+    .VPHero .image-container {
+        width: 520px;
+        height: 520px;
+    }
+
+    .VPHero .image-bg,
+    .VPHero .image-src {
+        width: 440px;
+        height: 440px;
+        max-width: 440px;
+        max-height: 440px;
+    }
+}
+
+.VPHero.has-image.VPHomeHero {
+    padding: 64px;
+    padding-bottom: 0;
+}
+
+.VPHero.has-image.VPHomeHero > .container {
+    align-items: center;
+}
+
+.VPNavBarSearchButton {
+    width: 200px;
+}
+
+.VPNavBarSearchButton > .text {
+    width: 150px;
+    text-align: left;
+}

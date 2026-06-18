@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="gh-sdk icon">
+    <defs>
+      <linearGradient id="g" x1="130" y1="230" x2="890" y2="830" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#18c8ff"/>
+        <stop offset="0.52" stop-color="#4f78ff"/>
+        <stop offset="1" stop-color="#a835ff"/>
+      </linearGradient>
+    </defs>
+  
+    <path
+      d="M512 88
+         C546 88 573 101 601 118
+         L813 245
+         C866 277 892 322 892 384
+         V640
+         C892 702 866 747 813 779
+         L601 906
+         C573 923 546 936 512 936
+         C478 936 451 923 423 906
+         L211 779
+         C158 747 132 702 132 640
+         V384
+         C132 322 158 277 211 245
+         L423 118
+         C451 101 478 88 512 88Z"
+      fill="none"
+      stroke="url(#g)"
+      stroke-width="48"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  
+    <path
+      d="M323 383 L431 491 L323 599"
+      fill="none"
+      stroke="#fff"
+      stroke-width="52"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  
+    <path
+      d="M493 596 H610"
+      fill="none"
+      stroke="#fff"
+      stroke-width="44"
+      stroke-linecap="round"
+    />
+  
+    <path
+      d="M690 727
+         L785 666
+         C800 656 808 640 808 622
+         V450"
+      fill="none"
+      stroke="url(#g)"
+      stroke-width="42"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  
+    <circle cx="650" cy="753" r="46" fill="#0b1020" stroke="url(#g)" stroke-width="38"/>
+    <circle cx="808" cy="622" r="46" fill="#0b1020" stroke="url(#g)" stroke-width="38"/>
+    <circle cx="808" cy="450" r="46" fill="#0b1020" stroke="url(#g)" stroke-width="38"/>
+  </svg>

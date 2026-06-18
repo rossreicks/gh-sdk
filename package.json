@@ -1,7 +1,7 @@
 {
     "name": "gh-sdk",
     "version": "0.1.0",
-    "description": "A Node SDK for GitHub CLI.",
+    "description": "Type-safe GitHub CLI wrapper for Node.js",
     "type": "module",
     "license": "MIT",
     "author": "Ross Reicks",
