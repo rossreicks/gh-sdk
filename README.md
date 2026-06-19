@@ -44,6 +44,35 @@ await gh.repo.view({
 });
 ```
 
+## Supported command groups
+
+`gh-sdk` currently wraps low-friction, API-shaped GitHub CLI commands in these namespaces:
+
+- `gh.repo`
+- `gh.pr`
+- `gh.issue`
+- `gh.release`
+- `gh.run`
+- `gh.workflow`
+- `gh.label`
+- `gh.search`
+- `gh.secret`
+- `gh.sshKey`
+- `gh.gpgKey`
+
+Structured read methods use `gh --json` where available. Text-only SSH and GPG key list commands return `{ data: { stdout } }`.
+
+## Unsupported commands / future enhancements
+
+Some `gh` commands intentionally remain unsupported until they have a clearer SDK contract:
+
+- `gist`: mostly text output and file/clone/edit flows that need a separate filesystem/output design.
+- `licenses`: top-level text-only output. This could later return `{ data: { stdout } }` if useful.
+- `release download` and `run download`: filesystem-output commands.
+- `run view --log`, `run view --log-failed`, and `workflow view --yaml`: text/log/YAML output commands.
+- `release verify` and `release verify-asset`: attestation-specific output that should get dedicated result types.
+- Browser/editor/formatting flows such as `--web`, `--editor`, `--jq`, `--template`, and highly interactive commands.
+
 ## Development
 
 ```sh
