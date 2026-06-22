@@ -1,13 +1,13 @@
 {
     "name": "gh-sdk",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Type-safe GitHub CLI wrapper for Node.js",
     "type": "module",
     "license": "MIT",
     "author": "Ross Reicks",
     "repository": {
         "type": "git",
-        "url": "https://github.com/rossreicks/gh-sdk.git"
+        "url": "git+https://github.com/rossreicks/gh-sdk.git"
     },
     "bugs": {
         "url": "https://github.com/rossreicks/gh-sdk/issues"
